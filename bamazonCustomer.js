@@ -129,7 +129,7 @@ function reorder(){
         {
             name: "reorder",
             type: "confirm",
-            message: "Would you like to reorder your previous product or place a new order?"
+            message: "Would you like to place a new order?"
         }
     ).then(function(answer){
         if(answer.reorder){
