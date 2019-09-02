@@ -28,3 +28,5 @@ VALUES
     ("John Wick", "Film", 5.99, 89),
     ("A Quiet Place", "Film", 12.99, 10),
     ("Catan", "Board Games", 42.96, 54);
+
+SELECT * FROM products;
