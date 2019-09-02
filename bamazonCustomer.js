@@ -117,7 +117,8 @@ function placeOrder(product){
             });
             console.log("--------------------------------------------------------");
             console.log(chalk.green("\nSuccess! Your order has been processed!"));
-            console.log("The total of your order is: $" + chalk.magenta(totalPrice) + "\n");
+            // console.log(item);
+            console.log("The total of your order is: " + chalk.magenta("$" + totalPrice) + "\n");
             reorder();
         }
     });
