@@ -24,7 +24,7 @@ function displayInventory(){
         if (err) throw err;
         // console.log(res);
         var table = new Table({
-            head: [chalk.magenta('ID #'), chalk.cyan('Product Name'), chalk.cyan('Category'), chalk.cyan('Price')]
+            head: [chalk.magenta('ID #'), chalk.cyan('Product Name'), chalk.cyan('Department'), chalk.cyan('Price')]
         });
         for(var i = 0; i < res.length; i++){
             table.push([res[i].item_id, res[i].product_name, res[i].department_name, `$${res[i].price}`]);
@@ -41,7 +41,7 @@ function initiating(){
         {
             name: "confirmBuy",
             type: "confirm",
-            message: "Would you like to purchase any products?"
+            message: "Would you like to purchase any products? [Quit with Q]"
         }
     ).then(function(answer){
         if(answer.confirmBuy){
