@@ -6,7 +6,7 @@ CREATE DATABASE bamazon_db;
 -- Makes it so all of the following code will affect bamazon_db --
 USE bamazon_db;
 
--- Creates the table "products" within bamazon_db --
+-- Creates the table "products" within bamazon_db for Customer--
 CREATE TABLE products(
     item_id INTEGER NOT NULL AUTO_INCREMENT,
     product_name VARCHAR(45) NOT NULL,
@@ -29,4 +29,15 @@ VALUES
     ("A Quiet Place", "Film", 12.99, 10),
     ("Catan", "Board Games", 42.96, 54);
 
+-- Creates the table "departments" within bamazon_db for Supervisor --
+CREATE TABLE departments(
+    department_id INTEGER NOT NULL AUTO_INCREMENT,
+    department_name VARCHAR(50) NOT NULL,
+    over_head_costs INTEGER(10,2) NOT NULL,
+    PRIMARY Key (department_id)
+);
+
+
+
 SELECT * FROM products;
+SELECT * FROM departments;
