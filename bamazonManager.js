@@ -57,7 +57,7 @@ function viewProducts(){
         }
         console.log(table.toString());
         console.log(`\n----------------------------------------------------------------------------\n`);
-        // promptManager();
+        promptManager();
     });
 }
 
@@ -119,7 +119,7 @@ function addToInventory(){
             }
         ]).then(function(answer){
             // console.log(answer);
-            if(answer.addAmount === 0){
+            if(parseInt(answer.addAmount) === 0){
                 console.log(chalk.red("\nThe amount of item can't be 0.\nPlease re-enter your product ID # and amount that you would like to add\n"));
                 addToInventory();
             }else{
@@ -148,5 +148,67 @@ function addToInventory(){
             }
         });
     })
+}
 
+function addNewProduct(){
+    inquirer.prompt([
+        {
+            name: "product",
+            type: "input",
+            message: "What is the name of the product you are adding?"
+        },
+        {
+            name: "department",
+            type: "input",
+            message: "What department does this product belong to?"
+        }, 
+        {
+            name: "price",
+            type: "input",
+            message: "What is the price of this product?",
+            validate: function(value){
+                if (isNaN(value) === false){
+                    return true;
+                }
+                return false;
+            }
+        },
+        {
+            name: "quantity",
+            type: "input",
+            message: "How many would you like to add in stock?",
+            validate: function(value){
+                if (isNaN(value) === false){
+                    return true;
+                }
+                return false;
+            }
+        }
+    ]).then(function(answer){
+        // console.log(answer);
+        console.log(chalk.yellow("\nAdding new product in store......"));
+        connection.query(
+            "INSERT INTO products SET ?", 
+            {
+                product_name: answer.product,
+                department_name: answer.department,
+                price: parseFloat(answer.price),
+                stock_quantity: parseInt(answer.quantity)
+            },
+            function(err, res){
+                if (err) throw err;
+                console.log(chalk.green("\nSUCCESS! ") + answer.product + " has been added in Bamazon.\n");
+                inquirer.prompt({
+                    name: "addNew",
+                    type: "confirm",
+                    message: "Would you likd to add more new products?"
+                }).then(function(answer){
+                    if(answer.addNew){
+                        addNewProduct();
+                    }else{
+                        promptManager();
+                    }
+                })
+            });
+    });
 }
