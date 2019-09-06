@@ -132,11 +132,13 @@ function addToInventory(){
                         if (err) throw err;
                         // console.log(res);
                         console.log(chalk.green("\nSUCCESS! ") + product + "'s stock quantity has increased by " + answer.addAmount + ".\nCurrent product stock quantity is: " + chalk.yellow(item.stock_quantity + parseInt(answer.addAmount)));
-                        inquirer.prompt({
-                            name: "keepAdding",
-                            type: "confirm",
-                            message: "Would you like to add more products?"
-                        }).then(function(answer){
+                        inquirer.prompt([
+                            {
+                                name: "keepAdding",
+                                type: "confirm",
+                                message: "Would you like to add more products?"
+                            }
+                        ]).then(function(answer){
                             if(answer.keepAdding){
                                 addToInventory();
                             }else{
@@ -198,11 +200,13 @@ function addNewProduct(){
             function(err, res){
                 if (err) throw err;
                 console.log(chalk.green("\nSUCCESS! ") + answer.product + " has been added in Bamazon.\n");
-                inquirer.prompt({
-                    name: "addNew",
-                    type: "confirm",
-                    message: "Would you likd to add more new products?"
-                }).then(function(answer){
+                inquirer.prompt([
+                    {
+                        name: "addNew",
+                        type: "confirm",
+                        message: "Would you likd to add more new products?"
+                    }
+                ]).then(function(answer){
                     if(answer.addNew){
                         addNewProduct();
                     }else{

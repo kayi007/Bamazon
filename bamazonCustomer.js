@@ -37,13 +37,13 @@ function displayInventory(){
 }
 
 function initiating(){
-    inquirer.prompt(
+    inquirer.prompt([
         {
             name: "confirmBuy",
             type: "confirm",
             message: "Would you like to purchase any products? [Quit with Q]"
         }
-    ).then(function(answer){
+    ]).then(function(answer){
         if(answer.confirmBuy){
             buying();
         }else{
@@ -125,13 +125,13 @@ function placeOrder(product){
 }
 
 function reorder(){
-    inquirer.prompt(
+    inquirer.prompt([
         {
             name: "reorder",
             type: "confirm",
             message: "Would you like to place a new order?"
         }
-    ).then(function(answer){
+    ]).then(function(answer){
         if(answer.reorder){
             displayInventory();
         }else{

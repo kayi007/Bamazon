@@ -37,7 +37,14 @@ CREATE TABLE departments(
     PRIMARY Key (department_id)
 );
 
-
+INSERT INTO departments(department_name, over_head_costs)
+VALUES 
+    ("Electronics", 45000),
+    ("Apparel", 60000),
+    ("Beauty", 70000),
+    ("Furniture", 98500),
+    ("Film", 88000),
+    ("Board Games", 52900);
 
 SELECT * FROM products;
 SELECT * FROM departments;
