@@ -18,33 +18,36 @@ CREATE TABLE products(
 
 INSERT INTO products(product_name, department_name, price, stock_quantity)
 VALUES
-    ("Echo Dot", "Electronics", 49.99, 68),
-    ("Outdoor Security Camera", "Electronics", 88.39, 24),
-    ("V-neck Top", "Apparel", 7.64, 120),
-    ("Men's Slim Shorts", "Apparel", 15.99, 138),
-    ("Makeup Brushes Set", "Beauty", 7.21, 35),
-    ("Lifewit Nightstand", "Furniture", 69.99, 98), 
-    ("Embody Chair", "Furniture", 1185.75, 8),
-    ("John Wick", "Film", 5.99, 89),
-    ("A Quiet Place", "Film", 12.99, 10),
-    ("Catan", "Board Games", 42.96, 54);
+    ("Echo Dot", "Electronics", 49.99, 678),
+    ("Outdoor Security Camera", "Electronics", 88.39, 244),
+    ("V-neck Top", "Apparel", 7.64, 1200),
+    ("Men's Slim Shorts", "Apparel", 15.99, 1438),
+    ("Makeup Brushes Set", "Beauty", 7.21, 335),
+    ("Lifewit Nightstand", "Furniture", 69.99, 986), 
+    ("Embody Chair", "Furniture", 1185.75, 548),
+    ("John Wick", "Film", 5.99, 879),
+    ("A Quiet Place", "Film", 12.99, 1460),
+    ("Catan", "Board Games", 42.96, 5496);
 
 -- Creates the table "departments" within bamazon_db for Supervisor --
 CREATE TABLE departments(
     department_id INTEGER NOT NULL AUTO_INCREMENT,
     department_name VARCHAR(50) NOT NULL,
-    over_head_costs INTEGER(10,2) NOT NULL,
+    over_head_costs DECIMAL(10,2) NOT NULL,
     PRIMARY Key (department_id)
 );
 
-INSERT INTO departments(department_name, over_head_costs)
+INSERT INTO departments(department_name, over_head_costs) 
 VALUES 
-    ("Electronics", 45000),
-    ("Apparel", 60000),
-    ("Beauty", 70000),
-    ("Furniture", 98500),
-    ("Film", 88000),
-    ("Board Games", 52900);
+    ("Electronics", 10000),
+    ("Apparel", 12000),
+    ("Beauty", 7000),
+    ("Furniture", 18000),
+    ("Film", 5400),
+    ("Board Games", 9000);
+
+ALTER TABLE products
+ADD product_sales DECIMAL(10,2) NOT NULL DEFAULT 0;
 
 SELECT * FROM products;
 SELECT * FROM departments;

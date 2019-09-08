@@ -39,9 +39,27 @@ function promptSupervisor(){
     });
 }
 
-// function viewProducts(){
-
-// }
+function viewProducts(){
+    connection.query(
+        "SELECT d.department_id, d.department_name, d.over_head_costs, SUM(p.product_sales) AS product_sales, (SUM(product_sales) - over_head_costs) AS total_profit FROM departments AS d INNER JOIN products AS p ON d.department_name = p.department_name GROUP BY department_name ORDER BY department_id;", 
+        function(err,res){
+            if (err) throw err;
+            console.log(chalk.yellow("\n Department Product Sales and Total Revenue\n"));
+            // console.log(res);
+            var table = new Table({
+                head: [chalk.cyan("department_id"), chalk.cyan("department_name"), chalk.cyan("over_head_costs"), chalk.magenta('product_sales'), chalk.magenta('total_profit')]
+            });
+            for(var i = 0; i < res.length; i++){
+                if(res[i].product_sales === null){
+                    res[i].product_sales = 0;
+                }
+                table.push([res[i].department_id, res[i].department_name, res[i].over_head_costs, res[i].product_sales, res[i].total_profit]);
+            }
+            console.log(table.toString());
+            console.log("\n");
+            promptSupervisor();
+        });
+}
 
 function createDepartment(){
     inquirer.prompt([
@@ -71,7 +89,7 @@ function createDepartment(){
             },
             function(err, res){
                 if (err) throw err;
-                console.log(chalk.green("\nSUCCESS! " + "A new department " + chalk.green(answer.department) + " has been added in Bamazon!\n"));
+                console.log(chalk.green("\nSUCCESS! ") + "A new department " + chalk.green(answer.department) + " has been added in Bamazon!\n");
                 inquirer.prompt([
                     {
                         name: "addMore",

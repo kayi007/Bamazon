@@ -110,8 +110,8 @@ function placeOrder(product){
         }else{
             var totalPrice = product.units * item.price;
             var updatedQty = item.stock_quantity - product.units;
-            connection.query("UPDATE products SET ? WHERE ?", 
-            [{stock_quantity: updatedQty}, {item_id: product.id}], function(err){
+            connection.query("UPDATE products SET stock_quantity = ?, product_sales = ? WHERE ?", 
+            [updatedQty, totalPrice, {item_id: product.id}], function(err){
                 if (err) throw err;
                 // console.log("Updated Inventory!");
             });
