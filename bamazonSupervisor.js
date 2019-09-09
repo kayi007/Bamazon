@@ -50,9 +50,9 @@ function viewProducts(){
                 head: [chalk.cyan("department_id"), chalk.cyan("department_name"), chalk.cyan("over_head_costs"), chalk.magenta('product_sales'), chalk.magenta('total_profit')]
             });
             for(var i = 0; i < res.length; i++){
-                if(res[i].product_sales === null){
-                    res[i].product_sales = 0;
-                }
+                // if(res[i].product_sales === null){
+                //     res[i].product_sales = 0;
+                // }
                 table.push([res[i].department_id, res[i].department_name, res[i].over_head_costs, res[i].product_sales, res[i].total_profit]);
             }
             console.log(table.toString());
@@ -89,7 +89,19 @@ function createDepartment(){
             },
             function(err, res){
                 if (err) throw err;
+                // console.log(res);
                 console.log(chalk.green("\nSUCCESS! ") + "A new department " + chalk.green(answer.department) + " has been added in Bamazon!\n");
+            });
+            connection.query("SELECT * FROM departments", function(err, res){
+                if (err) throw err;
+                var table = new Table({
+                    head: [chalk.cyan("department_id"), chalk.cyan("department_name"), chalk.cyan("over_head_costs")]
+                });
+                for(var i = 0; i < res.length; i++){
+                    table.push([res[i].department_id, res[i].department_name, res[i].over_head_costs]);
+                }
+                console.log(table.toString());
+                console.log("\n");
                 inquirer.prompt([
                     {
                         name: "addMore",
@@ -104,5 +116,5 @@ function createDepartment(){
                     }
                 });
             });
-    });
+        });
 }
