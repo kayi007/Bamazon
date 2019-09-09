@@ -31,7 +31,7 @@ To run the manager view, please enter the following command in your terminal: <b
 ![Image of Bamazon Customer](demo/bamazon_manager.gif)
 
 # Technologies Used for Bamazon
-As an app developer of CLI-Word-Guess-Game, here are the technologies I used:
+As an app developer of Bamazon, here are the technologies I used:
 - Node.js
 - npm packages: inquirer, chalk, mysql, cli-table
 - SQL (Structured Query Language)
